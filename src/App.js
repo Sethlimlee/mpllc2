@@ -269,13 +269,7 @@ function App() {
     };
 
     fetchTeeTimes();
-  }, [startDate, selectedCourses, numHoles]);
-
-  const combinedTeeTimes = [
-    ...chronoTeeTimes,
-    ...foreupTeeTimes,
-    ...memberSportsTeeTimes,
-  ].sort((a, b) => a.courseName.localeCompare(b.courseName));
+  }, [startDate, selectedCourses, numHoles, chronoCourses, foreupCourses, memberSportsCourses]);
 
   return (
     <div>
