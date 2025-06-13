@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import './App.css';
@@ -25,7 +25,7 @@ function App() {
   const [numHoles, setNumHoles] = useState(9);
 
   // Define Chrono courses (Chronogolf)
-  const chronoCourses = [
+  const chronoCourses = useMemo(() => [
     { id: 'bc27ab7a-6218-4b61-9aa8-0838f7c44ce3%2Ccaa8142a-4a42-482b-8d35-4239ce26f7b0', name: 'Bonneville', url: 'https://www.chronogolf.com/club/bonneville-golf-course', holesSupported: [9, 18] },
     { id: '41ea25ca-ffcb-4f14-a86d-de0ef84510e0', name: 'Forest Dale', url: 'https://www.chronogolf.com/club/forest-dale-golf-course', holesSupported: [9, 18] },
     { id: '547936f8-0f45-4bea-b557-d15a4de485ad', name: 'Glendale', url: 'https://www.chronogolf.com/club/glendale-golf-course', holesSupported: [9, 18] },
@@ -37,24 +37,27 @@ function App() {
     { id: '79c03256-be52-4e3d-aba8-9c64df6e12b2', name: 'River Oaks', url: 'https://www.chronogolf.com/club/river-oaks-golf-course-utah', holesSupported: [9, 18] },
     { id: '9bb16c41-88fe-4f36-a84c-39f74f8aa5f2%2Cbc4c00f2-435a-4f4a-8d0a-c807d5f515f0', name: 'South Mountain', url: 'https://www.chronogolf.com/club/south-mountain-slco', holesSupported: [9, 18] },
     { id: '2c162b65-6803-4bad-9a21-4c1ca88bb242%2C77dca1a2-edae-47d2-a202-a1e9391cc305%2Cbd6e3c42-7ae5-4d97-b6d0-60ebf9957a7e', name: 'Mountain Dell', url: 'https://www.chronogolf.com/club/mountain-dell-golf-club', holesSupported: [9, 18] }
-  ];
+  ],[]);
 
   // Define ForeUp courses
-  const foreupCourses = [
+  const foreupCourses = useMemo(() => [
     { id: '1726', bookingClass: '3412', name: 'Sleepy Ridge', url: 'https://foreupsoftware.com/index.php/booking/19396/1726#/teetimes', holesSupported: [9, 18] }
-  ];
+  ],[]);
 
    // Define Membersports courses
-  const memberSportsCourses = [
+  const memberSportsCourses = useMemo(() => [
     { name: 'Fox Hollow', url: 'https://app.membersports.com/tee-times/15396/18907/0', id: 18907, golfClubId: 15396, holesSupported: [9, 18] },
     { name: 'Hobble Creek', url: 'https://app.membersports.com/tee-times/15404/18918/0', id: 18918, golfClubId: 15404, holesSupported: [9, 18] },
     { name: 'Cedar Hills', url: 'https://app.membersports.com/tee-times/15381/18891/0', id: 18891, golfClubId: 15381, holesSupported: [9, 18] },
     { name: 'Talons Cove', url: 'https://app.membersports.com/tee-times/15455/18982/0', id: 18982, golfClubId: 15455, holesSupported: [9, 18] }
-  ];
+  ],[]);
 
-  const allCourses = [...chronoCourses, ...foreupCourses, ...memberSportsCourses].sort((a, b) =>
+  const allCourses = useMemo(() => (
+  [...chronoCourses, ...foreupCourses, ...memberSportsCourses].sort((a, b) =>
     a.name.localeCompare(b.name)
-  );
+  )
+), [chronoCourses, foreupCourses, memberSportsCourses]);
+
 
   // Selected course names (default to all selected)
   // const [selectedCourses, setSelectedCourses] = useState(() => new Set(allCourses.map(c => c.name)));
