@@ -11,8 +11,6 @@ import MemberSportsCourse from './MemberSportsCourse';
 // Seth was here
 
 
-
-
 function App() {
   const [startDate, setStartDate] = useState(new Date());
   const [chronoTeeTimes, setChronoTeeTimes] = useState([]);
