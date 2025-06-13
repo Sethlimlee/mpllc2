@@ -1,0 +1,267 @@
+/* App.css */
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.courses {
+  margin-bottom: 3rem;
+}
+
+.custom-datepicker {
+  margin-top: 1.8rem;
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  text-align: center; /* Center the text inside the input */
+}
+
+.custom-datepicker:hover,
+.custom-datepicker:focus {
+  border-color: #00704A;
+  box-shadow: 0 0 0 2px rgba(0, 112, 74, 0.25);
+}
+
+.react-datepicker {
+  font-size: 18px; /* Increase the font size inside the calendar */
+  width: 380px; /* Adjust the width of the calendar */
+}
+.react-datepicker__day, 
+.react-datepicker__day-name {
+  font-size: 18px; /* Increase the font size for the day names and day cells */
+  padding: 10px; /* Increase padding for larger clickable area */
+}
+
+/* Make the month and year select dropdowns bigger */
+.react-datepicker__month-select,
+.react-datepicker__year-select {
+  font-size: 16px; /* Increase the font size of month and year selectors */
+  height: 40px; /* Increase height of dropdowns */
+}
+
+.react-datepicker__day:hover {
+  background-color: #00704A !important;
+  color: white;
+  border-radius: 0.3rem;
+}
+
+.react-datepicker__day--selected {
+  background-color: #00704A !important;
+  border-radius: 0.3rem;
+  font-weight: normal; /* Remove the bold effect */
+}
+
+.react-datepicker__day--keyboard-selected {
+  background-color: transparent !important;
+  color: inherit !important;
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove the green border for today's date */
+.react-datepicker__day--today {
+  font-weight: normal !important; /* Remove the bold styling from today's date */
+  border: none !important; /* Remove the green border */
+}
+
+.react-datepicker__day--today:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.react-datepicker__day:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.no-tee-times-message {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #333;
+  margin-top: 2rem;
+}
+
+.title-green {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #00704A;
+}
+
+.course-filters-courses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 1rem;
+  justify-content: center;
+}
+
+.select-all {
+display: flex;
+flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 1rem;
+  justify-content: center;
+}
+
+.select-all-pill {
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: 2px solid #ccc;
+  background-color: white;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1.2rem;
+}
+
+.select-all-pill.active {
+  background-color: #1a7f37;
+  color: white;
+  border-color: #1a7f37;
+}
+
+.filter-pill {
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: 2px solid #ccc;
+  background-color: white;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.filter-pill.active {
+  background-color: #1a7f37;
+  color: white;
+  border-color: #1a7f37;
+}
+
+
+.datepicker-container {
+  margin-bottom: 20px;
+}
+
+
+/* Smooth transition for chevron icon */
+.chevron {
+  display: inline-block;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-left: 12px; /* 👈 Add spacing here */
+  padding-bottom: .3rem;
+}
+
+.filter-chevron {
+  display: inline-block;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-left: 12px; /* 👈 Add spacing here */
+  padding-bottom: .2rem;
+}
+
+.course-wrapper {
+  margin-bottom: 20px; /* Ensure space between course sections */
+}
+
+.course-header {
+  padding: 15px;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.course-content {
+  padding: 15px;
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+  display: none; /* Initially hidden */
+}
+
+/* Show the content when expanded */
+.course-content.expanded {
+  display: block;
+}
+
+.filter-header {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.filter-header:hover {
+  font-weight: 800;
+}
+
+.search-note {
+  font-size: 1rem;  /* Adjust the size as needed */        /* Optional: adjust color */
+  margin-top: 10px;   /* Optional: space above the note */
+  font-weight: 500;
+  text-align: center;
+  padding-right: 2px;
+  padding-left: 2px;
+}
+
+.holes-header {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.holes-header:hover {
+  font-weight: 800;
+}
+
+.holes-chevron {
+  display: inline-block;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-left: 12px; /* 👈 Add spacing here */
+  padding-bottom: .2rem;
+}
+
+.holes {
+  display: flex;
+  flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 1rem;
+    justify-content: center;
+  }
+  
+  .holes-pill {
+    padding: 8px 14px;
+    border-radius: 20px;
+    border: 2px solid #ccc;
+    background-color: white;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 1.2rem;
+  }
+  
+  .holes-pill.active {
+    background-color: #1a7f37;
+    color: white;
+    border-color: #1a7f37;
+  }
