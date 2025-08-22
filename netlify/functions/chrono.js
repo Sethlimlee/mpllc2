@@ -1,6 +1,17 @@
+const { ApifyClient } = require('apify-client');
+
 exports.handler = async (event, context) => {
   const { queryStringParameters } = event;
   const { url } = queryStringParameters;
+  
+  // Replace with your actual Apify API token and Task ID
+  const APIFY_API_TOKEN = process.env.APIFY_API_TOKEN;
+  const CHRONOGOLF_TASK_ID = 'YOUR_TASK_ID'; 
+
+  // Initialize the ApifyClient with your API token
+  const apifyClient = new ApifyClient({
+    token: APIFY_API_TOKEN,
+  });
 
   if (!url || !url.startsWith('https://www.chronogolf.com')) {
     return {
@@ -10,45 +21,35 @@ exports.handler = async (event, context) => {
   }
 
   try {
-    const fetch = (await import('node-fetch')).default;
-
-    const res = await fetch(url, {
-      // Add browser-like headers here
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36',
-        'Accept': 'application/json, text/plain, */*',
-        'Accept-Language': 'en-US,en;q=0.9',
-        'Referer': 'https://www.chronogolf.com/',
-        'Sec-Fetch-Dest': 'empty',
-        'Sec-Fetch-Mode': 'cors',
-        'Sec-Fetch-Site': 'same-site'
-      }
+    // Run the Apify task with a dynamic start URL
+    const run = await apifyClient.task(CHRONOGOLF_TASK_ID).call({
+      // The startUrls is now a dynamic value based on the URL parameter
+      startUrls: [{ url: url }],
+      useSession: true,
+      waitUntil: 'networkidle0',
     });
 
-    if (!res.ok) {
-      const errorBody = await res.text();
-      console.error('Upstream API error:', res.status, res.statusText, 'Body:', errorBody);
+    // Get the dataset from the run and list the items
+    const dataset = await apifyClient.dataset(run.defaultDatasetId).listItems();
+
+    if (dataset.items && dataset.items.length > 0) {
+      // Return the first item from the dataset, assuming it's the JSON data
       return {
-        statusCode: res.status,
-        body: JSON.stringify({
-          error: "Upstream API error",
-          status: res.status,
-          statusText: res.statusText,
-          details: errorBody
-        })
+        statusCode: 200,
+        body: JSON.stringify(dataset.items[0]),
+      };
+    } else {
+      return {
+        statusCode: 404,
+        body: JSON.stringify({ error: "No data found for this URL" }),
       };
     }
 
-    const data = await res.json();
-    return {
-      statusCode: 200,
-      body: JSON.stringify(data)
-    };
   } catch (err) {
-    console.error('Netlify function failed:', err.message);
+    console.error('Apify run failed:', err.message);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: "Netlify function error", details: err.message })
+      body: JSON.stringify({ error: "Apify integration failed", details: err.message }),
     };
   }
 };
