@@ -4,6 +4,8 @@ exports.handler = async (event, context) => {
   const { queryStringParameters } = event;
   const { url } = queryStringParameters;
   
+
+  console.log('API Token Value:', process.env.APIFY_API_TOKEN);
   // Replace with your actual Apify API token and Task ID
   const APIFY_API_TOKEN = process.env.APIFY_API_TOKEN;
   const CHRONOGOLF_TASK_ID = 'NiJvcWHVOkWBWNser'; 
